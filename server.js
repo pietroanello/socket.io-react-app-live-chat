@@ -4,17 +4,23 @@ import http from "http"
 
 const app = express()
 const server = http.createServer(app)
-const io = socket(server)
+const io = socket(server, {
+    pingInterval: 25000,
+})
 
 app.use(express.static("react-app/build"))
 
 io.on("connection", socket => {
-    console.log(`${socket.id} connected`)
-    socket.on("sendData", data => {
-        console.log(`Name: ${data}`)
+    console.log(`${socket.id} connected at ${Date.now()}`)
+    socket.on("sendMsg", data => {
+        io.emit("msgData", data)
     })
     socket.on("disconnect", () => {
-        console.log(`${socket.id} disconnected`)
+        io.emit("userDisconnected")
+        console.log(`${socket.id} disconnected at ${Date.now()}`)
+    })
+    socket.on("ping", msg => {
+        alert(msg)
     })
 })
 

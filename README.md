@@ -1,14 +1,18 @@
-# Socket.io React App for live chat [in progress]
+# Socket.io React App for live chat
 
-A simple app that stores form data in neDB database and return it in a component with a fetch request.
+A simple live chat app that use Socket.io for live communication between a NodeJS server and all the opened clients.
 
 ## How it works
 
-In the project directory, you can run `npm start`, that execute `npm run build && (cd ../ && node index.js)`.
+In the main directory, you can run `npm install`, that execute `npm run build && (cd ../ && node index.js)`.
 
-Then, when someone goes to http://localhost:5000, the socket data, initialized in App.js with `const socket = io()`, will be received from the server and register a new connection.
+Then, you can run `npm start`, that execute `(cd react-app && npm run build) && node server.js`.
 
-Sumbitting the form will `emit` a sendData event that logs the name in the server.
+You can now go to http://localhost:5000, open it in different browsers and chat with all peoples that are connected.
+
+### Next steps
+
+-   Add CSS for styling
 
 ### Dependencies
 
