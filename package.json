@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "(cd react-app && npm run build) && node server.js",
-    "install": "npm install -y && (cd react-app && npm install -y)"
+    "postinstall": "cd react-app && npm install"
   },
   "keywords": [
     "express",
