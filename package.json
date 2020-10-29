@@ -1,5 +1,5 @@
 {
-  "name": "socket.io-example",
+  "name": "socket.io-react-app-live-chat",
   "version": "1.0.0",
   "description": "A simple app that use socket.io for live data sharing",
   "main": "server.js",
