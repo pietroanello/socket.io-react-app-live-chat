@@ -6,7 +6,7 @@ Run `npm install`, then `npm start`.
 
 ## How it works
 
-In the main directory, you can run `npm install`, that execute `npm run build && (cd ../ && node index.js)`.
+In the main directory, you can run `npm install`, that install npm in main directory, and then runs a postinstall script that execute `cd react-app && npm install`.
 
 Then, you can run `npm start`, that execute `(cd react-app && npm run build) && node server.js`.
 
