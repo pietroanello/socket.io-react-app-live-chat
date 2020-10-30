@@ -1,5 +1,7 @@
 # Socket.io React App for live chat
 
+Live example: https://socket-io-app-live-chat.herokuapp.com/
+
 A simple live chat app that use Socket.io for live communication between a NodeJS server and all the opened clients.
 
 Run `npm install`, then `npm start`.
