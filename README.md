@@ -14,7 +14,8 @@ You can now go to http://localhost:5000, open it in different browsers and chat 
 
 ### Next steps
 
--   Add CSS for styling
+-   [x] Add CSS for styling
+-   [ ] Make private rooms
 
 ### Dependencies
 

@@ -7,7 +7,6 @@ function App() {
     const [username, setUsername] = useState("")
     const [usersConnected, setUsersConnected] = useState(0)
     const [msg, setMsg] = useState("")
-    const [finalMsg, setFinalMsg] = useState("")
     const [chat, setChat] = useState([])
 
     useEffect(() => {
@@ -18,11 +17,17 @@ function App() {
                 return newArr
             })
         })
+        socket.on("userNumber", data => {
+            setUsersConnected(data)
+        })
+        socket.on("disconnect", () => {
+            console.log("disconnected")
+            socket.close()
+        })
     }, [])
 
     function handleSubmit(event) {
         event.preventDefault()
-        setFinalMsg(msg)
         socket.emit("sendMsg", { name: username, msg: msg })
     }
 
@@ -32,22 +37,24 @@ function App() {
     }
 
     return (
-        <div>
+        <>
             <h1 className='title'>socket.io live chat</h1>
             <div className='main-container'>
-                <p>
-                    <span className='connected-users'></span>
-                    connected {usersConnected > 1 ? "users" : "user"}
-                </p>
                 <div className='chat-container'>
-                    {chat.map(user => (
-                        <p key={user.name + user.msg}>
-                            <span>{user.name}: </span>
-                            {user.msg}
-                        </p>
-                    ))}
-                </div>
-                <form onSubmit={handleSubmit}>
+                    <p className='users-count'>
+                        <span className='connected-users'>
+                            {usersConnected}{" "}
+                        </span>
+                        connected {usersConnected > 1 ? "users" : "user"}
+                    </p>
+                    <div className='messages-container'>
+                        {chat.map(user => (
+                            <p key={user.name + user.msg}>
+                                <span>{user.name}: </span>
+                                {user.msg}
+                            </p>
+                        ))}
+                    </div>
                     <input
                         type='name'
                         name='username'
@@ -64,10 +71,21 @@ function App() {
                         value={msg}
                         onChange={handleChange}
                     />
-                    <button>Send</button>
-                </form>
+                    <button onClick={handleSubmit}>Send</button>
+                </div>
             </div>
-        </div>
+            <p className='credits'>
+                For the love of learning
+                <span>
+                    <a
+                        href='https://github.com/pietroanello/socket.io-react-app-live-chat'
+                        target='_blank'
+                    >
+                        <img src='github-logo-small.svg' alt='github logo' />
+                    </a>
+                </span>
+            </p>
+        </>
     )
 }
 

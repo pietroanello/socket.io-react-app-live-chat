@@ -10,14 +10,19 @@ const io = socket(server, {
 
 app.use(express.static("react-app/build"))
 
+let connectedUsers = 0
+
 io.on("connection", socket => {
-    console.log(`${socket.id} connected at ${Date.now()}`)
+    console.log(`${socket.id} connected`)
+    connectedUsers = connectedUsers + 1
+    io.emit("userNumber", connectedUsers)
     socket.on("sendMsg", data => {
         io.emit("msgData", data)
     })
     socket.on("disconnect", () => {
-        io.emit("userDisconnected")
-        console.log(`${socket.id} disconnected at ${Date.now()}`)
+        connectedUsers = connectedUsers - 1
+        io.emit("userNumber", connectedUsers)
+        console.log(`${socket.id} disconnected`)
     })
     socket.on("ping", msg => {
         alert(msg)

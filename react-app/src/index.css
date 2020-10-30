@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+body {
+    margin: 0;
+    font-size: 10px;
+    height: 100vh;
+    font-family: 'Raleway', sans-serif;
+    background-color: cadetblue;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+#root {
+    display: grid;
+    grid-template-rows: 1fr minmax(300px, 600px) 1fr;
+    height: 100%;
+    place-items: center;
+}
+
+.title {
+    font-size: 2.5rem;
+    text-align: center;
+    color: palegoldenrod;
+}
+
+.main-container {
+    display: grid;
+    grid-template-columns: 1rem 1fr 1rem;
+    height: 100%;
+    width: 100%;
+    max-height: 600px;
+}
+
+.chat-container {
+    grid-column: 2 / span 1;
+    height: 100%;
+    border: 1px solid lightgray;
+    background-color: rgb(244,244,244);
+    border-radius: 7px;
+    display: grid;
+    grid-template: auto 1fr auto / 1fr auto;
+}
+
+@media(min-width: 431.19px) {
+    .main-container {
+        grid-template-columns: 1fr minmax(383px, 431.19px) 1fr;
+    }
+}
+
+@media(min-width: 768px) {
+    .main-container {
+        grid-template-columns: 15vw 1fr 15vw;
+    }
+    .chat-container {
+        justify-self: center;
+        width: 80%;
+        max-width: 700px;
+    }
+}
+
+.chat-container .users-count {
+    margin: .75rem;
+    font-size: 1.5em;
+}
+
+.chat-container .username {
+    grid-column: 2 / -1;
+    grid-row: 1 / 2;
+    text-align: center;
+    border: 2px solid cadetblue;
+    border-top: 0px;
+    border-right: 0px;
+    border-radius: 0 7px 0 7px;
+}
+
+.chat-container .messages-container {
+    grid-column: 1 / -1;
+    display: flex;
+    column-gap: fit;
+    grid-template-rows: auto-fill;
+    flex-direction: column;
+    padding: 1rem;
+    overflow-y: scroll;
+}
+
+.messages-container p {
+    font-size: 1.15rem;
+    margin: 10px 0;
+}
+
+.messages-container > :first-child {
+    margin-top: auto;
+}
+
+.messages-container > :last-child {
+    margin-bottom: 0px;
+}
+
+.messages-container p span {
+    font-size: 1rem;
+    vertical-align: baseline;
+    opacity: .65;
+}
+
+.chat-container .usermessage {
+    grid-column: 1 / 2;
+    font-size: 1.5em;
+    padding: .75rem;
+    border-bottom: 0px;
+    border-left: 0px;
+    border: 2px solid cadetblue;
+    border-bottom: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-radius: 0 0 0 7px;
+}
+
+.chat-container button {
+    border: 2px solid cadetblue;
+    border-bottom: 0px;
+    border-right: 0px;
+    border-radius: 0 0 7px 0px;
+}
+
+.credits {
+    font-size: 1rem;
+}
+
+.credits img {
+    vertical-align: middle;
+    height: 20px;
+    margin: .5rem;
+}
